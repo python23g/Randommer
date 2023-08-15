@@ -12,7 +12,17 @@ class Misc(Randommer):
         Returns:
             list: list of cultures
         '''
-        pass
+        endpoint = 'Misc/Cultures'
+        url = self.base_url+endpoint
+       
+        headers = {
+            'X-Api-Key':api_key
+        }
+        response = requests.get(url=url, headers=headers)
+        if response.status_code == 200:
+       
+            return response.json()
+
     
     def get_random_address(self, api_key: str, number: int, culture='en') -> list:
         '''get available misc cultures
@@ -25,4 +35,18 @@ class Misc(Randommer):
         Returns:
             list: random address
         '''
-        pass
+        endpoint = 'Misc/Random-Address'
+        url = self.base_url+endpoint
+        params = {
+            'number': number,
+            'culture':culture
+        }
+        headers = {
+            'X-Api-Key':api_key
+        }
+        response = requests.get(url=url, headers=headers, params=params)
+        if response.status_code == 200:
+       
+            return response.json()
+
+

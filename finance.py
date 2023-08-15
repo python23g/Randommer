@@ -11,7 +11,17 @@ class Finance(Randommer):
         Returns:
             list: list of types
         '''
-        pass
+        endpoint = 'Finance/CryptoAddress/Types'
+        url = self.base_url+endpoint
+       
+        headers = {
+            'X-Api-Key':'22286c167d644ce89daf8f5ba7342cab'
+        }
+        response = requests.get(url=url, headers=headers)
+        if response.status_code == 200:
+       
+            return response.json()
+
 
     def get_crypto_address(self, crypto_type: str, api_key: str) -> dict:
         '''get available crypto address
@@ -23,7 +33,19 @@ class Finance(Randommer):
         Returns:
             dict: crypto address
         '''
-        pass
+        endpoint = 'Finance/CryptoAddress'
+        url = self.base_url+endpoint
+        params = {
+            'cryptoType': crypto_type
+        }
+        headers = {
+            'X-Api-Key':api_key
+        }
+        response = requests.get(url=url, headers=headers, params=params)
+        if response.status_code == 200:
+       
+            return response.json()
+
 
     def get_countries(self, api_key: str) -> list:
         '''get available countries
@@ -34,7 +56,17 @@ class Finance(Randommer):
         Returns:
             list: crypto address
         '''
-        pass
+        endpoint = 'Finance/Countries'
+        url = self.base_url+endpoint
+       
+        headers = {
+            'X-Api-Key':'22286c167d644ce89daf8f5ba7342cab'
+        }
+        response = requests.get(url=url, headers=headers)
+        if response.status_code == 200:
+       
+            return response.json()
+
 
     def get_iban_by_country_code(self, country_code: str, api_key: str) -> dict:
         '''get available countries
@@ -46,4 +78,16 @@ class Finance(Randommer):
         Returns:
             dict: idan data
         '''
-        pass
+        endpoint = f'Finance/Iban/{country_code}'
+        url = self.base_url+endpoint
+        params = {
+            'countryCode': country_code
+        }
+        headers = {
+            'X-Api-Key':api_key
+        }
+        response = requests.get(url=url, headers=headers, params=params)
+        if response.status_code == 200:
+       
+            return response.json()
+

@@ -1,5 +1,6 @@
 import requests
 from randommer import Randommer
+import json
 
 
 class Card(Randommer):
@@ -13,7 +14,18 @@ class Card(Randommer):
         Returns:
             dict: card data
         '''
-        pass
+        endpoint = 'Card/'
+        url = self.base_url+endpoint
+        payloads = {
+            'type':type,
+        }
+        headers = {
+            'X-Api-Key':'22286c167d644ce89daf8f5ba7342cab'
+        }
+        response = requests.get(url=url, params=payloads, headers=headers)
+        if response.status_code == 200:
+       
+            return response.json()
 
     def get_card_types(self, api_key: str) -> list:
         '''get cars types from randommer
@@ -24,4 +36,15 @@ class Card(Randommer):
         Returns:
             list: list of types
         '''
-        pass
+        endpoint = 'Card/Types'
+        url = self.base_url+endpoint
+       
+        headers = {
+            'X-Api-Key':'22286c167d644ce89daf8f5ba7342cab'
+        }
+        response = requests.get(url=url, headers=headers)
+        if response.status_code == 200:
+       
+            return response.json()
+
+
